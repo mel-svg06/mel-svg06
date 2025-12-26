@@ -1140,9 +1140,12 @@ input, select, textarea {
 			-ms-transition-delay: 0.75s;
 			transition-delay: 0.75s;
 			background-image: linear-gradient(to top, rgba(19, 21, 25, 0.5), rgba(19, 21, 25, 0.5)), url("../../images/overlay.png");
-			background-size: auto, 256px 256px;
-			background-position: center, center;
-			background-repeat: no-repeat, repeat;
+			background-size: auto,
+ 256px 256px;
+			background-position: center,
+ center;
+			background-repeat: no-repeat,
+ repeat;
 			z-index: 2;
 		}
 
@@ -1656,3 +1659,191 @@ input, select, textarea {
 		body.is-preload #footer {
 			opacity: 0;
 		}
+
+
+/* --- New CSS for Opaque Text Overlay on Hover --- */
+
+/* 1. Setup the container (the link) to allow absolute positioning */
+.team-item .image-link {
+    position: relative; /* Essential: This makes children position relative to the link */
+    display: block;
+    overflow: hidden; /* Ensures text doesn't poke out if image scales */
+}
+
+/* 2. Style the Overlay Text Container (Hidden by default) */
+.team-item .overlay-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Background: Black with 70% opacity (0.7) */
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    color: white; /* Text color */
+    opacity: 0; /* Hide the text initially */
+    /* Transition for a smooth fade-in effect */
+    transition: opacity 0.3s ease; 
+    pointer-events: none; /* Allows clicks to go through to the link, just in case */
+}
+
+/* 3. Style the Text Inside the Overlay */
+.team-item .overlay-text h4 {
+    margin: 0;
+    padding: 10px 20px;
+    font-size: 1em;
+    text-transform: uppercase;
+   }
+
+/* 4. Hover State: Make the overlay visible */
+.team-item .image-link:hover .overlay-text {
+    opacity: 1; /* Fade the overlay in */
+}
+
+/* --- Important: Combine Image Hover with the new CSS --- */
+/* You might want to remove the opacity change from the image itself now,
+   as the overlay handles the dimming effect. */
+/* Update the original hover CSS (make sure this is not crossed out) */
+.team-item .image-link:hover img {
+    transform: scale(1.02); 
+    opacity: 1; /* Keep the image fully visible if the overlay is doing the dimming */
+    cursor: pointer; 
+}
+
+/* slideshow stuff*/ 
+
+
+.slide-image {
+  /* Ensure the image fills the space but doesn't overflow */
+  max-width: 100%; 
+  max-height: 100%;
+  
+  /* Center the image within the slide if the slide has extra height */
+  display: block;
+  margin: auto;
+}
+
+/* Optional: You may want to remove the default slide padding 
+   if you want the image to fill the border edge-to-edge. */
+.slide {
+  /* ... existing styles ... */
+  padding: 0; /* Removing padding */
+}
+
+
+/* SLIDE SHOW STUFF */ 
+.slideshow {
+  position: relative;
+  max-width: 600px;
+  height: 350px;
+  margin: 40px auto;
+}
+
+/* Hide radios */
+.slideshow input {
+  display: none;
+}
+
+.slides {
+  position: relative;
+  height: 100%;
+}
+
+/* Slides */
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+/* EXACT radio → slide mapping */
+#c1:checked ~ .slides .s1,
+#c2:checked ~ .slides .s2,
+#c3:checked ~ .slides .s3,
+#c4:checked ~ .slides .s4,
+#c5:checked ~ .slides .s5 {
+  opacity: 1;
+}
+
+/* Images */
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Arrows */
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 12px;
+  font-size: 24px;
+  color: white;
+  background: rgba(0,0,0,0.6);
+  cursor: pointer;
+  border-radius: 4px;
+  user-select: none;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.prev:hover,
+.next:hover {
+  background: rgba(0,0,0,0.85);
+}
+
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;        /* 👈 IMPORTANT */
+  transition: opacity 0.6s ease;
+}
+
+#c1:checked ~ .slides .s1,
+#c2:checked ~ .slides .s2,
+#c3:checked ~ .slides .s3,
+#c4:checked ~ .slides .s4,
+#c5:checked ~ .slides .s5 {
+  opacity: 1;
+  pointer-events: auto;        /* 👈 IMPORTANT */
+}
+
+#c1b:checked ~ .slides .s1b,
+#c2b:checked ~ .slides .s2b,
+#c3b:checked ~ .slides .s3b,
+#c4b:checked ~ .slides .s4b,
+#c5b:checked ~ .slides .s5b {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+#c1c:checked ~ .slides .s1c,
+#c2c:checked ~ .slides .s2c,
+#c3c:checked ~ .slides .s3c,
+#c4c:checked ~ .slides .s4c,
+#c5c:checked ~ .slides .s5c {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+
+#c1d:checked ~ .slides .s1d,
+#c2d:checked ~ .slides .s2d,
+#c3d:checked ~ .slides .s3d,
+#c4d:checked ~ .slides .s4d,
+#c5d:checked ~ .slides .s5d {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
